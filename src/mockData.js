@@ -1,5 +1,7 @@
 // EduSync — hardcoded prototype data. No backend; everything here is mock content.
 
+import { AlertTriangle, TrendingUp, Target, Sparkles } from "lucide-react";
+
 export const student = {
   name: "Amaan Shaikh",
   initials: "AS",
@@ -42,6 +44,14 @@ export const PRIORITY_STYLES = {
   },
 };
 
+// Icon shown alongside each priority badge/banner throughout the app.
+export const PRIORITY_ICONS = {
+  Urgent: AlertTriangle,
+  Moderate: TrendingUp,
+  "On Track": Target,
+  Excellent: Sparkles,
+};
+
 export const initialCourses = [
   {
     id: "requirements-gathering",
@@ -65,13 +75,13 @@ export const initialCourses = [
       { name: "Milestone 2 Report", dueDate: "2026-07-10" },
       { name: "Peer Review Quiz", dueDate: "2026-07-14" },
     ],
-    suggestedSession: { day: "Tue, Jul 8", time: "3:00 – 5:00 PM", focus: "Use Case Modeling" },
+    suggestedSession: { day: "Tue, Jul 8", time: "3:00 – 6:00 PM", focus: "Use Case Modeling" },
     alternateSlots: [
-      { day: "Mon, Jul 7", time: "2:00 – 4:00 PM" },
-      { day: "Wed, Jul 9", time: "5:00 – 7:00 PM" },
-      { day: "Thu, Jul 10", time: "10:00 – 11:30 AM" },
+      { day: "Mon, Jul 7", time: "2:00 – 5:00 PM" },
+      { day: "Wed, Jul 9", time: "5:00 – 8:00 PM" },
+      { day: "Thu, Jul 10", time: "10:00 AM – 1:00 PM" },
     ],
-    pendingProposal: { day: "Tue, Jul 8", time: "3:00 – 5:00 PM", focus: "Use Case Modeling" },
+    pendingProposal: { day: "Tue, Jul 8", time: "3:00 – 6:00 PM", focus: "Use Case Modeling" },
     confirmedSessions: [],
   },
   {
@@ -164,8 +174,8 @@ export const initialCourses = [
       { day: "Wed, Jul 9", time: "3:00 – 4:30 PM" },
       { day: "Fri, Jul 11", time: "9:00 – 10:30 AM" },
     ],
-    pendingProposal: null,
-    confirmedSessions: [{ day: "Mon, Jul 7", time: "4:00 – 5:30 PM", focus: "Eigenvalues & Eigenvectors" }],
+    pendingProposal: { day: "Mon, Jul 7", time: "4:00 – 5:30 PM", focus: "Eigenvalues & Eigenvectors" },
+    confirmedSessions: [],
   },
 ];
 

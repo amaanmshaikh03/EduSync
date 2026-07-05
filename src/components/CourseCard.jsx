@@ -1,17 +1,25 @@
+import { ChevronRight } from "lucide-react";
 import PriorityBadge from "./PriorityBadge";
 import { PRIORITY_STYLES } from "../mockData";
 
 function GradeBars({ performance, priority }) {
   const style = PRIORITY_STYLES[priority];
+  const average = Math.round(
+    performance.reduce((sum, entry) => sum + entry.grade, 0) / performance.length
+  );
+
   return (
-    <div className="flex items-end gap-1 h-7">
-      {performance.map((entry, i) => (
-        <span
-          key={i}
-          className={`w-[7px] rounded-t-sm opacity-80 ${style.dot}`}
-          style={{ height: `${Math.max(entry.grade, 12)}%` }}
-        />
-      ))}
+    <div className="flex flex-col items-end gap-1.5">
+      <span className={`text-sm font-bold tabular-nums ${style.text}`}>{average}%</span>
+      <div className="flex items-end gap-1 h-5">
+        {performance.map((entry, i) => (
+          <span
+            key={i}
+            className={`w-[5px] rounded-full opacity-80 ${style.dot}`}
+            style={{ height: `${Math.max(entry.grade, 20)}%` }}
+          />
+        ))}
+      </div>
     </div>
   );
 }
@@ -23,23 +31,23 @@ export default function CourseCard({ course, onSelect }) {
     <button
       type="button"
       onClick={() => onSelect(course.id)}
-      className="relative text-left w-full bg-surface border border-border rounded-2xl pl-5 pr-4 py-4 shadow-sm flex flex-col gap-3 transition hover:-translate-y-0.5 hover:shadow-md focus-visible:-translate-y-0.5"
+      className="group relative w-full text-left flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 bg-surface border border-border rounded-3xl pl-6 pr-5 py-4 shadow-[var(--shadow-card)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-card-hover)] focus-visible:-translate-y-0.5"
     >
-      <span className={`absolute left-0 top-3.5 bottom-3.5 w-1 rounded-full ${style.stripe}`} />
+      <span className={`absolute left-0 top-4 bottom-4 w-1 rounded-full ${style.stripe}`} />
 
-      <div className="flex items-start justify-between gap-2">
-        <div>
+      <div className="flex-shrink-0 sm:w-[230px]">
+        <div className="flex items-center gap-2">
           <h3 className="font-display text-lg font-bold leading-tight">{course.name}</h3>
-          <p className="text-xs text-ink-400 mt-0.5">{course.code}</p>
         </div>
-        <PriorityBadge priority={course.priority} />
+        <p className="text-xs text-ink-400 mt-0.5">{course.code}</p>
       </div>
 
-      <p className="text-sm text-ink-600 leading-snug">{course.summary}</p>
+      <p className="flex-1 min-w-0 text-sm text-ink-600 leading-snug">{course.summary}</p>
 
-      <div className="flex items-center justify-between mt-auto pt-1">
+      <div className="flex items-center gap-5 flex-shrink-0 pt-1 sm:pt-0">
+        <PriorityBadge priority={course.priority} />
         <GradeBars performance={course.performance} priority={course.priority} />
-        <span className="text-xs font-bold text-brand-600">View details →</span>
+        <ChevronRight className="w-4 h-4 text-ink-400 transition-transform group-hover:translate-x-0.5 group-hover:text-brand-600" />
       </div>
     </button>
   );

@@ -1,3 +1,4 @@
+import { Calendar } from "lucide-react";
 import { PRIORITY_STYLES } from "../mockData";
 
 function formatDueDate(dateStr) {
@@ -9,8 +10,14 @@ export default function ActivityRow({ activity, courseName, priority, isLast = f
   const style = PRIORITY_STYLES[priority];
 
   return (
-    <li className={`flex items-center gap-3 py-2.5 ${isLast ? "" : "border-b border-border"}`}>
-      <span className={`w-2 h-2 rounded-full flex-shrink-0 ${style.dot}`} />
+    <li
+      className={`flex items-center gap-3 py-2.5 -mx-2 px-2 rounded-lg transition-colors hover:bg-surface-alt ${
+        isLast ? "" : "border-b border-border"
+      }`}
+    >
+      <span className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${style.bg} ${style.text}`}>
+        <Calendar className="w-4 h-4" strokeWidth={2.25} />
+      </span>
       <div className="flex-1 min-w-0">
         <p className="text-sm font-semibold truncate">{activity.name}</p>
         {courseName && <p className="text-xs text-ink-400 mt-0.5 truncate">{courseName}</p>}
