@@ -1,2 +1,2 @@
 # EduSync
-Test
+Test!
