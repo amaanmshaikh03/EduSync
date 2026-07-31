@@ -65,23 +65,58 @@ export const initialCourses = [
       { activity: "Midterm Exam", grade: 61, level: "Below Average" },
     ],
     recommendedSkills: [
-      { name: "Requirements Elicitation", description: "Techniques for drawing out real needs from stakeholders through interviews, workshops, and observation." },
-      { name: "Use Case Modeling", description: "Describing how users interact with a system to capture functional requirements clearly." },
-      { name: "Stakeholder Analysis", description: "Identifying who is affected by a project and understanding their priorities and influence." },
-      { name: "Non-Functional Requirement Classification", description: "Sorting requirements like performance, security, and usability apart from core features." },
-      { name: "Traceability Matrices", description: "Mapping requirements to design, code, and tests so nothing gets lost along the way." },
+      {
+        name: "Requirements Elicitation",
+        description: "Techniques for drawing out real needs from stakeholders through interviews, workshops, and observation.",
+        references: [
+          { type: "reading", label: "Lecture 3 Slides — Elicitation Techniques" },
+          { type: "practice", label: "Worksheet: Stakeholder Interview Questions" },
+        ],
+      },
+      {
+        name: "Use Case Modeling",
+        description: "Describing how users interact with a system to capture functional requirements clearly.",
+        references: [
+          { type: "reading", label: "Textbook Ch. 4 — Use Case Diagrams" },
+          { type: "video", label: "Video Walkthrough: Actors & Use Cases" },
+        ],
+      },
+      {
+        name: "Stakeholder Analysis",
+        description: "Identifying who is affected by a project and understanding their priorities and influence.",
+        references: [
+          { type: "reading", label: "Lecture 5 Notes — Power/Interest Grids" },
+          { type: "practice", label: "Practice Set: Mapping Project Stakeholders" },
+        ],
+      },
+      {
+        name: "Non-Functional Requirement Classification",
+        description: "Sorting requirements like performance, security, and usability apart from core features.",
+        references: [
+          { type: "reading", label: "Textbook Ch. 6 — Quality Attributes" },
+          { type: "practice", label: "Worksheet: Sorting FR vs NFR Examples" },
+        ],
+      },
+      {
+        name: "Traceability Matrices",
+        description: "Mapping requirements to design, code, and tests so nothing gets lost along the way.",
+        references: [
+          { type: "reading", label: "Lecture 7 Slides — Requirements Traceability" },
+          { type: "video", label: "Video: Building a Traceability Matrix" },
+        ],
+      },
     ],
     upcomingActivities: [
-      { name: "Milestone 2 Report", dueDate: "2026-07-10" },
-      { name: "Peer Review Quiz", dueDate: "2026-07-14" },
+      { name: "Milestone 2 Report", dueDate: "2026-08-05" },
+      { name: "Peer Review Quiz", dueDate: "2026-08-07" },
     ],
-    suggestedSession: { day: "Tue, Jul 8", time: "3:00 – 6:00 PM", focus: "Use Case Modeling" },
+    suggestedSession: { day: "Tue, Aug 4", time: "3:00 – 6:00 PM", focus: "Use Case Modeling" },
     alternateSlots: [
-      { day: "Mon, Jul 7", time: "2:00 – 5:00 PM" },
-      { day: "Wed, Jul 9", time: "5:00 – 8:00 PM" },
-      { day: "Thu, Jul 10", time: "10:00 AM – 1:00 PM" },
+      { day: "Mon, Aug 3", time: "2:00 – 5:00 PM" },
+      { day: "Wed, Aug 5", time: "5:00 – 8:00 PM" },
+      { day: "Thu, Aug 6", time: "10:00 AM – 1:00 PM" },
     ],
-    pendingProposal: { day: "Tue, Jul 8", time: "3:00 – 6:00 PM", focus: "Use Case Modeling" },
+    pendingProposal: { day: "Tue, Aug 4", time: "3:00 – 6:00 PM", focus: "Use Case Modeling" },
     confirmedSessions: [],
   },
   {
@@ -96,21 +131,56 @@ export const initialCourses = [
       { activity: "Midterm Exam", grade: 94, level: "Excellent" },
     ],
     recommendedSkills: [
-      { name: "Recursion Optimization", description: "Rewriting recursive solutions to avoid redundant work and stack overflows." },
-      { name: "Advanced Data Structures", description: "Trees, graphs, and heaps — choosing the right structure for the problem at hand." },
-      { name: "Algorithm Complexity Analysis", description: "Reasoning about Big-O time and space trade-offs before you write the code." },
-      { name: "Object-Oriented Design Patterns", description: "Reusable solutions like Factory and Observer for common design problems." },
-      { name: "Unit Testing Practices", description: "Writing small, isolated tests that catch regressions before they ship." },
+      {
+        name: "Recursion Optimization",
+        description: "Rewriting recursive solutions to avoid redundant work and stack overflows.",
+        references: [
+          { type: "reading", label: "Textbook Ch. 8 — Recursion & Memoization" },
+          { type: "practice", label: "Practice Set: Rewriting Loops as Recursion" },
+        ],
+      },
+      {
+        name: "Advanced Data Structures",
+        description: "Trees, graphs, and heaps — choosing the right structure for the problem at hand.",
+        references: [
+          { type: "reading", label: "Lecture 9 Notes — Trees & Heaps" },
+          { type: "video", label: "Video: Graph Traversal Basics" },
+        ],
+      },
+      {
+        name: "Algorithm Complexity Analysis",
+        description: "Reasoning about Big-O time and space trade-offs before you write the code.",
+        references: [
+          { type: "reading", label: "Textbook Ch. 10 — Big-O Notation" },
+          { type: "practice", label: "Worksheet: Analyzing Runtime Complexity" },
+        ],
+      },
+      {
+        name: "Object-Oriented Design Patterns",
+        description: "Reusable solutions like Factory and Observer for common design problems.",
+        references: [
+          { type: "reading", label: "Lecture 11 Slides — Factory & Observer Patterns" },
+          { type: "video", label: "Video Walkthrough: Refactoring to Patterns" },
+        ],
+      },
+      {
+        name: "Unit Testing Practices",
+        description: "Writing small, isolated tests that catch regressions before they ship.",
+        references: [
+          { type: "reading", label: "Textbook Ch. 12 — Writing Testable Code" },
+          { type: "practice", label: "Practice Set: Writing Your First Unit Tests" },
+        ],
+      },
     ],
     upcomingActivities: [
-      { name: "Assignment 3", dueDate: "2026-07-18" },
-      { name: "Lab Quiz 2", dueDate: "2026-07-21" },
+      { name: "Assignment 3", dueDate: "2026-08-20" },
+      { name: "Lab Quiz 2", dueDate: "2026-08-25" },
     ],
-    suggestedSession: { day: "Wed, Jul 9", time: "1:00 – 2:30 PM", focus: "Design Patterns" },
+    suggestedSession: { day: "Wed, Aug 19", time: "1:00 – 2:30 PM", focus: "Design Patterns" },
     alternateSlots: [
-      { day: "Tue, Jul 8", time: "9:00 – 10:30 AM" },
-      { day: "Thu, Jul 10", time: "3:00 – 4:30 PM" },
-      { day: "Fri, Jul 11", time: "11:00 AM – 12:30 PM" },
+      { day: "Mon, Aug 17", time: "3:00 – 4:30 PM" },
+      { day: "Tue, Aug 18", time: "9:00 – 10:30 AM" },
+      { day: "Fri, Aug 21", time: "11:00 AM – 12:30 PM" },
     ],
     pendingProposal: null,
     confirmedSessions: [],
@@ -127,23 +197,58 @@ export const initialCourses = [
       { activity: "Midterm Exam", grade: 76, level: "Average" },
     ],
     recommendedSkills: [
-      { name: "Network Security Fundamentals", description: "Core concepts like firewalls, VPNs, and segmentation that keep networks safe." },
-      { name: "Cryptography Basics", description: "How encryption, hashing, and keys protect data in transit and at rest." },
-      { name: "Threat Modeling", description: "Systematically identifying what could go wrong before an attacker finds it first." },
-      { name: "Penetration Testing Concepts", description: "Ethical hacking techniques used to probe systems for exploitable weaknesses." },
-      { name: "Security Policy Design", description: "Writing the rules and procedures that guide an organization's security posture." },
+      {
+        name: "Network Security Fundamentals",
+        description: "Core concepts like firewalls, VPNs, and segmentation that keep networks safe.",
+        references: [
+          { type: "reading", label: "Lecture 2 Slides — Firewalls & Segmentation" },
+          { type: "practice", label: "Lab Notes: Configuring a Basic Firewall" },
+        ],
+      },
+      {
+        name: "Cryptography Basics",
+        description: "How encryption, hashing, and keys protect data in transit and at rest.",
+        references: [
+          { type: "reading", label: "Textbook Ch. 5 — Symmetric vs Asymmetric Encryption" },
+          { type: "video", label: "Video: How Hashing Protects Passwords" },
+        ],
+      },
+      {
+        name: "Threat Modeling",
+        description: "Systematically identifying what could go wrong before an attacker finds it first.",
+        references: [
+          { type: "reading", label: "Lecture 6 Notes — STRIDE Framework" },
+          { type: "practice", label: "Worksheet: Modeling Threats for a Login System" },
+        ],
+      },
+      {
+        name: "Penetration Testing Concepts",
+        description: "Ethical hacking techniques used to probe systems for exploitable weaknesses.",
+        references: [
+          { type: "reading", label: "Textbook Ch. 9 — Ethical Hacking Fundamentals" },
+          { type: "video", label: "Video Walkthrough: A Basic Pen Test Workflow" },
+        ],
+      },
+      {
+        name: "Security Policy Design",
+        description: "Writing the rules and procedures that guide an organization's security posture.",
+        references: [
+          { type: "reading", label: "Lecture 10 Slides — Writing Security Policies" },
+          { type: "practice", label: "Practice Set: Drafting an Access Control Policy" },
+        ],
+      },
     ],
     upcomingActivities: [
-      { name: "Lab 4: Firewall Configuration", dueDate: "2026-07-11" },
-      { name: "Quiz 2", dueDate: "2026-07-16" },
+      { name: "Lab 4: Firewall Configuration", dueDate: "2026-08-10" },
+      { name: "Quiz 2", dueDate: "2026-08-13" },
     ],
-    suggestedSession: { day: "Thu, Jul 10", time: "11:00 AM – 1:00 PM", focus: "Cryptography Basics" },
+    suggestedSession: { day: "Fri, Aug 7", time: "11:00 AM – 1:00 PM", focus: "Cryptography Basics" },
     alternateSlots: [
-      { day: "Mon, Jul 7", time: "6:00 – 8:00 PM" },
-      { day: "Wed, Jul 9", time: "9:00 – 11:00 AM" },
-      { day: "Fri, Jul 11", time: "1:00 – 3:00 PM" },
+      { day: "Tue, Aug 4", time: "6:00 – 8:00 PM" },
+      { day: "Wed, Aug 5", time: "9:00 – 11:00 AM" },
+      { day: "Thu, Aug 6", time: "6:00 – 8:00 PM" },
     ],
-    pendingProposal: { day: "Thu, Jul 10", time: "11:00 AM – 1:00 PM", focus: "Cryptography Basics" },
+    pendingProposal: { day: "Fri, Aug 7", time: "11:00 AM – 1:00 PM", focus: "Cryptography Basics" },
     confirmedSessions: [],
   },
   {
@@ -158,23 +263,58 @@ export const initialCourses = [
       { activity: "Midterm Exam", grade: 84, level: "Good" },
     ],
     recommendedSkills: [
-      { name: "Multivariable Calculus", description: "Extending derivatives and integrals to functions of several variables." },
-      { name: "Linear Transformations", description: "Functions between vector spaces that preserve addition and scalar multiplication." },
-      { name: "Eigenvalues & Eigenvectors", description: "Special scalars and vectors that reveal how a transformation stretches space." },
-      { name: "Proof Techniques", description: "Induction, contradiction, and direct proof — the toolkit for rigorous argument." },
-      { name: "Series Convergence Tests", description: "Methods like the ratio and comparison tests to determine if a series converges." },
+      {
+        name: "Multivariable Calculus",
+        description: "Extending derivatives and integrals to functions of several variables.",
+        references: [
+          { type: "reading", label: "Textbook Ch. 14 — Partial Derivatives" },
+          { type: "practice", label: "Problem Set: Gradient & Directional Derivatives" },
+        ],
+      },
+      {
+        name: "Linear Transformations",
+        description: "Functions between vector spaces that preserve addition and scalar multiplication.",
+        references: [
+          { type: "reading", label: "Lecture 8 Notes — Matrix Representations" },
+          { type: "video", label: "Video: Visualizing Linear Transformations" },
+        ],
+      },
+      {
+        name: "Eigenvalues & Eigenvectors",
+        description: "Special scalars and vectors that reveal how a transformation stretches space.",
+        references: [
+          { type: "reading", label: "Textbook Ch. 16 — Diagonalization" },
+          { type: "practice", label: "Worksheet: Finding Eigenvalues by Hand" },
+        ],
+      },
+      {
+        name: "Proof Techniques",
+        description: "Induction, contradiction, and direct proof — the toolkit for rigorous argument.",
+        references: [
+          { type: "reading", label: "Lecture 4 Slides — Induction & Contradiction" },
+          { type: "practice", label: "Practice Set: Writing Formal Proofs" },
+        ],
+      },
+      {
+        name: "Series Convergence Tests",
+        description: "Methods like the ratio and comparison tests to determine if a series converges.",
+        references: [
+          { type: "reading", label: "Textbook Ch. 18 — Ratio & Comparison Tests" },
+          { type: "video", label: "Video Walkthrough: Choosing the Right Test" },
+        ],
+      },
     ],
     upcomingActivities: [
-      { name: "Problem Set 5", dueDate: "2026-07-12" },
-      { name: "Quiz 3", dueDate: "2026-07-19" },
+      { name: "Problem Set 5", dueDate: "2026-08-14" },
+      { name: "Quiz 3", dueDate: "2026-08-19" },
     ],
-    suggestedSession: { day: "Mon, Jul 7", time: "4:00 – 5:30 PM", focus: "Eigenvalues & Eigenvectors" },
+    suggestedSession: { day: "Mon, Aug 10", time: "4:00 – 5:30 PM", focus: "Eigenvalues & Eigenvectors" },
     alternateSlots: [
-      { day: "Tue, Jul 8", time: "12:00 – 1:30 PM" },
-      { day: "Wed, Jul 9", time: "3:00 – 4:30 PM" },
-      { day: "Fri, Jul 11", time: "9:00 – 10:30 AM" },
+      { day: "Tue, Aug 11", time: "12:00 – 1:30 PM" },
+      { day: "Wed, Aug 12", time: "3:00 – 4:30 PM" },
+      { day: "Thu, Aug 13", time: "9:00 – 10:30 AM" },
     ],
-    pendingProposal: { day: "Mon, Jul 7", time: "4:00 – 5:30 PM", focus: "Eigenvalues & Eigenvectors" },
+    pendingProposal: { day: "Mon, Aug 10", time: "4:00 – 5:30 PM", focus: "Eigenvalues & Eigenvectors" },
     confirmedSessions: [],
   },
 ];

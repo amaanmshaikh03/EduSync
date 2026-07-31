@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { ArrowLeft, BarChart3, Target, ListChecks, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import PriorityBadge from "./PriorityBadge";
 import SkillChip from "./SkillChip";
+import SkillDetailPanel from "./SkillDetailPanel";
 import SessionCard from "./SessionCard";
 import ActivityRow from "./ActivityRow";
 import { PRIORITY_STYLES, PRIORITY_ICONS } from "../mockData";
@@ -75,9 +77,27 @@ function PerformanceTable({ course }) {
   );
 }
 
-export default function CourseDetail({ course, onBack, onOpenProposal, onSuggestOrBookAnother, onEditConfirmed }) {
+export default function CourseDetail({
+  course,
+  onBack,
+  onOpenProposal,
+  onSuggestOrBookAnother,
+  onEditConfirmed,
+  onDeleteConfirmed,
+}) {
   const style = PRIORITY_STYLES[course.priority];
   const Icon = PRIORITY_ICONS[course.priority];
+  const [openSkillIndex, setOpenSkillIndex] = useState(null);
+  const selectedSkill = openSkillIndex !== null ? course.recommendedSkills[openSkillIndex] : null;
+
+  useEffect(() => {
+    if (openSkillIndex === null) return;
+    function handleKeyDown(e) {
+      if (e.key === "Escape") setOpenSkillIndex(null);
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [openSkillIndex]);
 
   return (
     <div className="view max-w-[1180px] mx-auto px-10 pt-9 pb-16">
@@ -112,15 +132,30 @@ export default function CourseDetail({ course, onBack, onOpenProposal, onSuggest
           <div className="bg-surface border border-border rounded-3xl px-6 py-5 shadow-[var(--shadow-card)]">
             <SectionLabel
               icon={Target}
-              trailing={<p className="text-xs text-ink-400">Hover a skill for details</p>}
+              trailing={<p className="text-xs text-ink-400">Click a skill for details</p>}
             >
               Skills to Focus On
             </SectionLabel>
             <div className="flex flex-wrap gap-2">
               {course.recommendedSkills.map((skill, i) => (
-                <SkillChip key={skill.name} skill={skill} index={i} />
+                <SkillChip
+                  key={skill.name}
+                  skill={skill}
+                  index={i}
+                  isOpen={openSkillIndex === i}
+                  onOpen={() => setOpenSkillIndex(i)}
+                  onClose={() => setOpenSkillIndex(null)}
+                />
               ))}
             </div>
+
+            {selectedSkill && (
+              <SkillDetailPanel
+                key={selectedSkill.name}
+                skill={selectedSkill}
+                onClose={() => setOpenSkillIndex(null)}
+              />
+            )}
           </div>
         </section>
 
@@ -130,6 +165,7 @@ export default function CourseDetail({ course, onBack, onOpenProposal, onSuggest
             onOpenProposal={onOpenProposal}
             onSuggestOrBookAnother={onSuggestOrBookAnother}
             onEditConfirmed={onEditConfirmed}
+            onDeleteConfirmed={onDeleteConfirmed}
           />
 
           <div className="bg-surface border border-border rounded-3xl px-5 pt-4 pb-5 shadow-[var(--shadow-card)]">
