@@ -14,7 +14,7 @@ export default function BookingModal({ course, onAccept, onModify, onReject, onC
           <CalendarClock className="w-5 h-5" strokeWidth={2.25} />
         </span>
         <p className="text-xs font-bold uppercase tracking-wide text-brand-600 mb-2">Proposed Session</p>
-        <h2 className="font-display text-xl font-bold mb-1">Book a Study Session</h2>
+        <h2 className="font-display text-xl font-bold mb-1">Review This Session</h2>
         <p className="text-ink-400 text-sm mb-4">{course.name}</p>
 
         <div className="bg-surface-alt rounded-2xl px-4 py-4 mb-5">
@@ -27,16 +27,16 @@ export default function BookingModal({ course, onAccept, onModify, onReject, onC
         <div className="flex flex-col gap-2">
           <button type="button" onClick={onAccept} className="btn-primary w-full">
             <CheckCircle2 className="w-4 h-4" strokeWidth={2.25} />
-            Accept Session
+            Accept
           </button>
           <div className="flex gap-2">
             <button type="button" onClick={onModify} className="btn-secondary flex-1">
               <RefreshCw className="w-3.5 h-3.5" strokeWidth={2.25} />
-              Modify Time
+              Choose Different Time
             </button>
             <button type="button" onClick={onReject} className="btn-danger flex-1">
               <XCircle className="w-3.5 h-3.5" strokeWidth={2.25} />
-              Reject
+              Decline
             </button>
           </div>
         </div>

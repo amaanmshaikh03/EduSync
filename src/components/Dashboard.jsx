@@ -1,11 +1,17 @@
+import { useState } from "react";
 import { BookOpen, AlertTriangle, CalendarCheck2, ListChecks } from "lucide-react";
 import CourseCard from "./CourseCard";
 import ActivityRow from "./ActivityRow";
+import StatDetailModal from "./StatDetailModal";
 import { PRIORITY_RANK, student } from "../mockData";
 
-function StatTile({ icon: Icon, tone, value, label }) {
+function StatTile({ icon: Icon, tone, value, label, onClick }) {
   return (
-    <div className="flex items-center gap-3 bg-surface border border-border rounded-2xl px-4 py-3.5 shadow-[var(--shadow-card)]">
+    <button
+      type="button"
+      onClick={onClick}
+      className="flex items-center gap-3 bg-surface border border-border rounded-2xl px-4 py-3.5 shadow-[var(--shadow-card)] text-left transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-card-hover)]"
+    >
       <span className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${tone}`}>
         <Icon className="w-[18px] h-[18px]" strokeWidth={2.25} />
       </span>
@@ -13,11 +19,13 @@ function StatTile({ icon: Icon, tone, value, label }) {
         <p className="font-display text-xl font-bold tabular-nums">{value}</p>
         <p className="text-xs text-ink-600">{label}</p>
       </div>
-    </div>
+    </button>
   );
 }
 
 export default function Dashboard({ courses, onSelectCourse }) {
+  const [activeStatModal, setActiveStatModal] = useState(null); // null | 'courses' | 'urgent' | 'sessions' | 'activities'
+
   const sortedCourses = [...courses].sort(
     (a, b) => PRIORITY_RANK[a.priority] - PRIORITY_RANK[b.priority]
   );
@@ -51,24 +59,33 @@ export default function Dashboard({ courses, onSelectCourse }) {
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-7">
-        <StatTile icon={BookOpen} tone="bg-brand-100 text-brand-700" value={courses.length} label="Courses" />
+        <StatTile
+          icon={BookOpen}
+          tone="bg-brand-100 text-brand-700"
+          value={courses.length}
+          label="Courses"
+          onClick={() => setActiveStatModal("courses")}
+        />
         <StatTile
           icon={AlertTriangle}
           tone="bg-urgent-bg text-urgent-text"
           value={urgentCount}
           label={urgentCount === 1 ? "Needs Urgent Focus" : "Need Urgent Focus"}
+          onClick={() => setActiveStatModal("urgent")}
         />
         <StatTile
           icon={CalendarCheck2}
           tone="bg-excellent-bg text-excellent-text"
           value={confirmedCount}
           label={confirmedCount === 1 ? "Session Booked" : "Sessions Booked"}
+          onClick={() => setActiveStatModal("sessions")}
         />
         <StatTile
           icon={ListChecks}
           tone="bg-ontrack-bg text-ontrack-text"
           value={allActivities.length}
           label="Upcoming Activities"
+          onClick={() => setActiveStatModal("activities")}
         />
       </div>
 
@@ -99,6 +116,15 @@ export default function Dashboard({ courses, onSelectCourse }) {
           </ul>
         </aside>
       </div>
+
+      {activeStatModal && (
+        <StatDetailModal
+          kind={activeStatModal}
+          courses={courses}
+          onSelectCourse={onSelectCourse}
+          onClose={() => setActiveStatModal(null)}
+        />
+      )}
     </div>
   );
 }

@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Header from "./components/Header";
 import Dashboard from "./components/Dashboard";
 import CourseDetail from "./components/CourseDetail";
 import BookingModal from "./components/BookingModal";
 import ModifySessionModal from "./components/ModifySessionModal";
+import Toast from "./components/Toast";
 import { initialCourses, pickNextProposal } from "./mockData";
 
 export default function App() {
@@ -13,8 +14,16 @@ export default function App() {
   const [activeModal, setActiveModal] = useState(null); // null | 'proposal' | 'modify'
   // null = deciding on course.pendingProposal; otherwise the confirmedSessions index being edited
   const [editingIndex, setEditingIndex] = useState(null);
+  const [toast, setToast] = useState(null);
+  const toastTimeoutRef = useRef(null);
 
   const selectedCourse = courses.find((c) => c.id === selectedCourseId) ?? null;
+
+  function showToast(message) {
+    if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
+    setToast({ id: Date.now(), message });
+    toastTimeoutRef.current = setTimeout(() => setToast(null), 3000);
+  }
 
   function goToDashboard() {
     setCurrentView("dashboard");
@@ -58,16 +67,19 @@ export default function App() {
   }
 
   function handleAccept() {
+    const { day } = selectedCourse.pendingProposal;
     updateCourse(selectedCourseId, {
       confirmedSessions: [...selectedCourse.confirmedSessions, selectedCourse.pendingProposal],
       pendingProposal: null,
     });
     closeModal();
+    showToast(`Session confirmed for ${day}`);
   }
 
   function handleReject() {
     updateCourse(selectedCourseId, { pendingProposal: null });
     closeModal();
+    showToast("Proposal declined");
   }
 
   function handlePickSlot(slot) {
@@ -76,6 +88,7 @@ export default function App() {
         i === editingIndex ? { ...slot, focus: session.focus } : session
       );
       updateCourse(selectedCourseId, { confirmedSessions: updatedSessions });
+      showToast(`Session moved to ${slot.day}`);
     } else {
       updateCourse(selectedCourseId, {
         confirmedSessions: [
@@ -84,8 +97,16 @@ export default function App() {
         ],
         pendingProposal: null,
       });
+      showToast(`Session confirmed for ${slot.day}`);
     }
     closeModal();
+  }
+
+  function handleDeleteConfirmed(index) {
+    updateCourse(selectedCourseId, {
+      confirmedSessions: selectedCourse.confirmedSessions.filter((_, i) => i !== index),
+    });
+    showToast("Session removed");
   }
 
   return (
@@ -103,6 +124,7 @@ export default function App() {
           onOpenProposal={handleOpenProposal}
           onSuggestOrBookAnother={handleSuggestOrBookAnother}
           onEditConfirmed={handleEditConfirmed}
+          onDeleteConfirmed={handleDeleteConfirmed}
         />
       )}
 
@@ -119,6 +141,8 @@ export default function App() {
       {activeModal === "modify" && selectedCourse && (
         <ModifySessionModal course={selectedCourse} onPick={handlePickSlot} onCancel={closeModal} />
       )}
+
+      {toast && <Toast key={toast.id} message={toast.message} />}
     </div>
   );
 }
